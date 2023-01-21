@@ -108,7 +108,9 @@ function RockPaperScissor() {
                     {computerPick === "rock" && (
                       <>
                         <div className="rounded-full w-fit m-auto relative z-40">
-                          <WinnerGlow />
+                          <div className="[&>*]:animate-RPSPopUpDelayed">
+                            <WinnerGlow />
+                          </div>
                           <InactiveGameButton
                             id="PaperButton"
                             src={PAPER}
@@ -174,7 +176,9 @@ function RockPaperScissor() {
                     {computerPick === "paper" && (
                       <>
                         <div className="rounded-full w-fit m-auto relative z-40">
-                          <WinnerGlow />
+                          <div className="[&>*]:animate-RPSPopUpDelayed">
+                            <WinnerGlow />
+                          </div>
                           <InactiveGameButton
                             id="ScissorButton"
                             src={SCISSORS}
@@ -239,7 +243,9 @@ function RockPaperScissor() {
                     {computerPick === "scissors" && (
                       <>
                         <div className="rounded-full w-fit m-auto relative z-40">
-                          <WinnerGlow />
+                          <div className="[&>*]:animate-RPSPopUpDelayed">
+                            <WinnerGlow />
+                          </div>
                           <InactiveGameButton
                             id="RockButton"
                             src={ROCK}
