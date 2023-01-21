@@ -306,17 +306,20 @@ function RockPaperScissor() {
           </button>
           {toggle && (
             <>
-              <div className="absolute grid grid-row-2 left-1/2 bottom-1/2 translate-y-1/2 -translate-x-1/2 z-50 bg-gray-100 sm:w-1/2 xl:w-1/4 h-1/2 m-auto rounded-xl animate-rulesSlideIn">
-                <h1 className="text-left text-2xl p-4 z-50 text-black">
-                  RULES
-                </h1>
-                <button
-                  className="absolute bg-transparent right-3 top-3 p-2 z-50"
-                  onClick={() => setToggle(!toggle)}
-                >
-                  <img src={CLOSE} />
-                </button>
-                <img className="m-auto" src={RULES} />
+              {/* Add modal from daisyUI */}
+              <div className="">
+                <div className="absolute left-1/2 bottom-1/2 translate-y-1/2 -translate-x-1/2 z-50 bg-gray-100 sm:w-1/2 xl:w-1/4 h-[40%] m-auto rounded-xl animate-rulesSlideIn">
+                  <h1 className="text-left text-2xl p-4 z-50 text-black">
+                    RULES
+                  </h1>
+                  <button
+                    className="absolute bg-transparent right-3 top-3 p-2 z-50"
+                    onClick={() => setToggle(!toggle)}
+                  >
+                    <img src={CLOSE} />
+                  </button>
+                  <img className=" m-auto" src={RULES} />
+                </div>
               </div>
             </>
           )}
