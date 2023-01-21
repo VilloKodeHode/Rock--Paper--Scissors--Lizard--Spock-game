@@ -8,8 +8,6 @@ import ScissorsGameButton, {
   RockGameButton,
 } from "./RPSLSButtons";
 
-//style
-
 export function WinnerGlow() {
   return (
     <>
@@ -173,7 +171,6 @@ export function StartingScreen(props) {
               }}
               className="rounded-full p-0 h-fit bg-blue-700 z-50 mr-14"
             >
-              {/* <GameButton id="PaperButton" src={PAPER} color="blue" /> */}
               <PaperGameButton />
             </button>
 
@@ -191,7 +188,6 @@ export function StartingScreen(props) {
               }}
               className="rounded-full p-0 h-fit bg-yellow-700 z-50 ml-14"
             >
-              {/* <GameButton id="ScissorButton" src={SCISSORS} color="yellow" /> */}
               <ScissorsGameButton />
             </button>
 
@@ -209,7 +205,6 @@ export function StartingScreen(props) {
               }}
               className="rounded-full p-0 h-fit bg-red-700 z-50 m-28 mb-0"
             >
-              {/* <GameButton id="RockButton" src={ROCK} color="red" /> */}
               <RockGameButton />
             </button>
 
