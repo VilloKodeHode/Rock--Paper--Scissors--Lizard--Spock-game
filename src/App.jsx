@@ -2,8 +2,9 @@ import "./App.css";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 //pages:
-import RockPaperScissors from "./RockPaperScissor/RockPaperScissorsPage";
-import RockPaperScissorLizardSpock from "./RockPaperScissor/RockPaperScissorsLizardSpockPage";
+import RockPaperScissors from "./RockPaperScissor/RPSpage";
+import RockPaperScissorsLizardSpock from "./RockPaperScissor/RPSLSpage";
+import RockPaperScissorsLizardSpockFireWater from "./RockPaperScissor/RPSLSFWpage";
 
 function App() {
   return (
@@ -12,7 +13,11 @@ function App() {
         <Route path="/" element={<RockPaperScissors />} />
         <Route
           path="/RockPaperScissorsLizardSpock"
-          element={<RockPaperScissorLizardSpock />}
+          element={<RockPaperScissorsLizardSpock />}
+        />
+        <Route
+          path="/RockPaperScissorsLizardSpockFireWater"
+          element={<RockPaperScissorsLizardSpockFireWater />}
         />
       </Routes>
     </Router>

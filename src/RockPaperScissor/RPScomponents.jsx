@@ -6,7 +6,7 @@ import TRIANGLE from "./assets/bg-triangle.svg";
 import ScissorsGameButton, {
   PaperGameButton,
   RockGameButton,
-} from "./RPSLSButtons";
+} from "./GameButtons";
 
 export function WinnerGlow() {
   return (

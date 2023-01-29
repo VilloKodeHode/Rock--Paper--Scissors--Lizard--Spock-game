@@ -1,7 +1,7 @@
 {
   "name": "rock-paper--scissors--lizard--spock-game",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "homepage": "https://github.com/VilloKodeHode/Rock--Paper--Scissors--Lizard--Spock-game",
   "scripts": {

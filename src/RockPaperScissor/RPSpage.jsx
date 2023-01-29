@@ -9,7 +9,8 @@ import ROCK from "./assets/icon-rock.svg";
 import RULES from "./assets/image-rules.svg";
 import CLOSE from "./assets/icon-close.svg";
 import LOGO from "./assets/logo.svg";
-import SHELDON from "./assets/Sheldon.png";
+import LOGOBONUS from "./assets/logo-bonus.svg";
+import LOGOFW from "./assets/logo-firewater.png";
 
 //style
 import "./RockPaperScissor.css";
@@ -20,9 +21,9 @@ import PlayRound, {
   ResultandRestart,
   StartingScreen,
   WinnerGlow,
-} from "./RockPaperScissor";
+} from "./RPScomponents";
 
-function RockPaperScissor() {
+function RockPaperScissors() {
   const [paper, setPaper] = useState(false);
   const [scissors, setScissors] = useState(false);
   const [rock, setRock] = useState(false);
@@ -48,10 +49,16 @@ function RockPaperScissor() {
   return (
     <>
       <Link
-        className="absolute top-2 left-2 p-2 m-2 bg-water-200 h-fit w-fit rounded-xl z-50 opacity-50"
+        className="absolute top-2 left-2 p-2 m-2 bg-water-200 h-fit w-fit rounded-xl z-50 opacity-80"
         to="/RockPaperScissorsLizardSpock"
       >
-        <img className="h-12" src={SHELDON} />
+        <img className="h-12 w-12" src={LOGOBONUS} />
+      </Link>
+      <Link
+        className="absolute top-20 left-2 p-2 m-2 bg-water-200 h-fit w-fit rounded-xl z-50 opacity-80"
+        to="/RockPaperScissorsLizardSpockFireWater"
+      >
+        <img className="h-12 w-12" src={LOGOFW} />
       </Link>
       <div
         id="RPS"
@@ -329,4 +336,4 @@ function RockPaperScissor() {
   );
 }
 
-export default RockPaperScissor;
+export default RockPaperScissors;

@@ -1,38 +1,42 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 //images
-import ROCK from "./assets/icon-rock.svg";
 import RULESBONUS from "./assets/image-rules-bonus.svg";
+import RULESFW from "./assets/RPSLSFW-Rules.png";
 import CLOSE from "./assets/icon-close.svg";
 import LOGO from "./assets/logo.svg";
 import LOGOBONUS from "./assets/logo-bonus.svg";
+import LOGOFW from "./assets/logo-firewater.png";
 
 //style
 import "./RockPaperScissor.css";
 
 import PlayRound, {
   EmptyGameButton,
-  InactiveGameButton,
   ResultandRestart,
   StartingScreen,
   WinnerGlow,
-} from "./RockPaperScissorLizardSpock";
+} from "./RPSLSFWcomponents";
 
 //buttons:
 import ScissorsGameButton, {
+  FireGameButton,
   LizardGameButton,
   PaperGameButton,
   RockGameButton,
   SpockGameButton,
-} from "./RPSLSButtons";
-import { Link } from "react-router-dom";
+  WaterGameButton,
+} from "./GameButtons";
 
-function RockPaperScissorLizardSpock() {
+function RockPaperScissorsLizardSpockFireWater() {
   const [paper, setPaper] = useState(false);
   const [scissors, setScissors] = useState(false);
   const [rock, setRock] = useState(false);
   const [lizard, setLizard] = useState(false);
   const [spock, setSpock] = useState(false);
+  const [fire, setFire] = useState(false);
+  const [water, setWater] = useState(false);
   const [computerPick, setComputerPick] = useState("");
   const [score, setScore] = useState(0);
   const [result, setResult] = useState("");
@@ -58,7 +62,13 @@ function RockPaperScissorLizardSpock() {
         className="absolute top-2 left-2 p-2 m-2 bg-water-200 h-fit w-fit rounded-xl z-50 opacity-80"
         to="/"
       >
-        <img className="h-12" src={LOGO} />
+        <img className="h-12 w-12" src={LOGO} />
+      </Link>
+      <Link
+        className="absolute top-20 left-2 p-2 m-2 bg-water-200 h-fit w-fit rounded-xl z-50 opacity-80"
+        to="/RockPaperScissorsLizardSpock"
+      >
+        <img className="h-12 w-12" src={LOGOBONUS} />
       </Link>
       <div
         id="RPS"
@@ -66,7 +76,7 @@ function RockPaperScissorLizardSpock() {
       >
         <div className="flex justify-between xl:w-1/2 sm:w-2/3 m-auto border-2 rounded-2xl p-4">
           <div className="font-extrabold leading-7 text-start text-white text-4xl">
-            <img src={LOGOBONUS} />
+            <img src={LOGOFW} className="h-28" />
           </div>
 
           <div className="h-[114px] flex flex-col justify-center py-2 px-12 w-fit bg-white rounded-md">
@@ -88,14 +98,18 @@ function RockPaperScissorLizardSpock() {
             rock={rock}
             lizard={lizard}
             spock={spock}
-            setComputerPick={setComputerPick}
-            setScore={setScore}
-            setResult={setResult}
+            fire={fire}
+            water={water}
             setPaper={setPaper}
             setScissors={setScissors}
             setRock={setRock}
             setLizard={setLizard}
             setSpock={setSpock}
+            setFire={setFire}
+            setWater={setWater}
+            setComputerPick={setComputerPick}
+            setScore={setScore}
+            setResult={setResult}
             setRound={setRound}
             PlayRound={PlayRound}
           />
@@ -109,12 +123,17 @@ function RockPaperScissorLizardSpock() {
                     <h1 className="m-4 text-3xl">You picked</h1>
                     {computerPick === "paper" ||
                     computerPick === "scissors" ||
-                    computerPick === "lizard" ? (
+                    computerPick === "lizard" ||
+                    computerPick === "fire" ? (
                       <PaperGameButton />
                     ) : null}
-                    {computerPick === "rock" || computerPick === "spock" ? (
+                    {computerPick === "rock" ||
+                    computerPick === "spock" ||
+                    computerPick === "water" ? (
                       <div className="rounded-full w-fit m-auto relative z-40">
-                        <WinnerGlow />
+                        <div className="[&>*]:animate-RPSPopUpDelayed">
+                          <WinnerGlow />
+                        </div>
                         <PaperGameButton />
                       </div>
                     ) : null}
@@ -155,6 +174,17 @@ function RockPaperScissorLizardSpock() {
                             <SpockGameButton />
                           </div>
                         )}
+                        {computerPick === "fire" && (
+                          <div className="rounded-full w-fit m-auto relative">
+                            <WinnerGlow />
+                            <FireGameButton />
+                          </div>
+                        )}
+                        {computerPick === "water" && (
+                          <div className="rounded-full w-fit m-auto relative">
+                            <WaterGameButton />
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -170,14 +200,19 @@ function RockPaperScissorLizardSpock() {
 
                     {computerPick === "rock" ||
                     computerPick === "scissors" ||
-                    computerPick === "spock" ? (
+                    computerPick === "spock" ||
+                    computerPick === "fire" ? (
                       <ScissorsGameButton />
                     ) : null}
 
-                    {computerPick === "paper" || computerPick === "lizard" ? (
+                    {computerPick === "paper" ||
+                    computerPick === "lizard" ||
+                    computerPick === "water" ? (
                       <>
                         <div className="rounded-full w-fit m-auto relative z-40">
-                          <WinnerGlow />
+                          <div className="[&>*]:animate-RPSPopUpDelayed">
+                            <WinnerGlow />
+                          </div>
                           <ScissorsGameButton />
                         </div>
                       </>
@@ -218,6 +253,17 @@ function RockPaperScissorLizardSpock() {
                             <SpockGameButton />
                           </div>
                         )}
+                        {computerPick === "fire" && (
+                          <div className="rounded-full w-fit m-auto relative">
+                            <WinnerGlow />
+                            <FireGameButton />
+                          </div>
+                        )}
+                        {computerPick === "water" && (
+                          <div className="rounded-full w-fit m-auto relative">
+                            <WaterGameButton />
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -232,13 +278,17 @@ function RockPaperScissorLizardSpock() {
                     <h1 className="m-4 text-3xl">You picked</h1>
                     {computerPick === "rock" ||
                     computerPick === "paper" ||
-                    computerPick === "spock" ? (
+                    computerPick === "spock" ||
+                    computerPick === "water" ? (
                       <RockGameButton />
                     ) : null}
                     {computerPick === "scissors" ||
-                    computerPick === "lizard" ? (
+                    computerPick === "lizard" ||
+                    computerPick === "fire" ? (
                       <div className="rounded-full w-fit m-auto relative z-40">
-                        <WinnerGlow />
+                        <div className="[&>*]:animate-RPSPopUpDelayed">
+                          <WinnerGlow />
+                        </div>
                         <RockGameButton />
                       </div>
                     ) : null}
@@ -252,18 +302,14 @@ function RockPaperScissorLizardSpock() {
                       <EmptyGameButton />
                       <div className="[&>*]:animate-RPSPopUpDelayed w-fit">
                         {computerPick === "rock" && (
-                          <InactiveGameButton
-                            id="RockButton"
-                            src={ROCK}
-                            color="red"
-                          />
+                          <div className="rounded-full w-fit m-auto relative">
+                            <RockGameButton />
+                          </div>
                         )}
                         {computerPick === "paper" && (
                           <div className="rounded-full w-fit m-auto relative">
                             <WinnerGlow />
-                            <div className="rounded-full w-fit m-auto relative">
-                              <PaperGameButton />
-                            </div>
+                            <PaperGameButton />
                           </div>
                         )}
                         {computerPick === "scissors" && (
@@ -273,13 +319,24 @@ function RockPaperScissorLizardSpock() {
                         )}
                         {computerPick === "lizard" && (
                           <div className="rounded-full w-fit m-auto relative">
-                            <WinnerGlow />
                             <LizardGameButton />
                           </div>
                         )}
                         {computerPick === "spock" && (
                           <div className="rounded-full w-fit m-auto relative">
+                            <WinnerGlow />
                             <SpockGameButton />
+                          </div>
+                        )}
+                        {computerPick === "fire" && (
+                          <div className="rounded-full w-fit m-auto relative">
+                            <FireGameButton />
+                          </div>
+                        )}
+                        {computerPick === "water" && (
+                          <div className="rounded-full w-fit m-auto relative">
+                            <WinnerGlow />
+                            <WaterGameButton />
                           </div>
                         )}
                       </div>
@@ -296,13 +353,18 @@ function RockPaperScissorLizardSpock() {
 
                     {computerPick === "rock" ||
                     computerPick === "scissors" ||
+                    computerPick === "fire" ||
                     computerPick === "lizard" ? (
                       <LizardGameButton />
                     ) : null}
-                    {computerPick === "spock" || computerPick === "paper" ? (
+                    {computerPick === "spock" ||
+                    computerPick === "paper" ||
+                    computerPick === "water" ? (
                       <>
                         <div className="rounded-full w-fit m-auto relative z-40">
-                          <WinnerGlow />
+                          <div className="[&>*]:animate-RPSPopUpDelayed">
+                            <WinnerGlow />
+                          </div>
                           <LizardGameButton />
                         </div>
                       </>
@@ -345,6 +407,17 @@ function RockPaperScissorLizardSpock() {
                             <SpockGameButton />
                           </div>
                         )}
+                        {computerPick === "fire" && (
+                          <div className="rounded-full w-fit m-auto relative">
+                            <WinnerGlow />
+                            <FireGameButton />
+                          </div>
+                        )}
+                        {computerPick === "water" && (
+                          <div className="rounded-full w-fit m-auto relative">
+                            <WaterGameButton />
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -359,13 +432,18 @@ function RockPaperScissorLizardSpock() {
 
                     {computerPick === "lizard" ||
                     computerPick === "paper" ||
+                    computerPick === "water" ||
                     computerPick === "spock" ? (
                       <SpockGameButton />
                     ) : null}
-                    {computerPick === "scissors" || computerPick === "rock" ? (
+                    {computerPick === "scissors" ||
+                    computerPick === "rock" ||
+                    computerPick === "fire" ? (
                       <>
                         <div className="rounded-full w-fit m-auto relative z-40">
-                          <WinnerGlow />
+                          <div className="[&>*]:animate-RPSPopUpDelayed">
+                            <WinnerGlow />
+                          </div>
                           <SpockGameButton />
                         </div>
                       </>
@@ -408,6 +486,171 @@ function RockPaperScissorLizardSpock() {
                             <SpockGameButton />
                           </div>
                         )}
+                        {computerPick === "fire" && (
+                          <div className="rounded-full w-fit m-auto relative">
+                            <FireGameButton />
+                          </div>
+                        )}
+                        {computerPick === "water" && (
+                          <div className="rounded-full w-fit m-auto relative">
+                            <WinnerGlow />
+                            <WaterGameButton />
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+            {fire && (
+              <>
+                <div className="flex h-full align-top z-40 text-white">
+                  <div className="[&>*]:animate-RPSPopUp">
+                    <h1 className="m-4 text-3xl">You picked</h1>
+
+                    {computerPick === "rock" ||
+                    computerPick === "spock" ||
+                    computerPick === "water" ||
+                    computerPick === "fire" ? (
+                      <FireGameButton />
+                    ) : null}
+                    {computerPick === "scissors" ||
+                    computerPick === "lizard" ||
+                    computerPick === "paper" ? (
+                      <>
+                        <div className="rounded-full w-fit m-auto relative z-40">
+                          <div className="[&>*]:animate-RPSPopUpDelayed">
+                            <WinnerGlow />
+                          </div>
+                          <FireGameButton />
+                        </div>
+                      </>
+                    ) : null}
+                  </div>
+
+                  <ResultandRestart setType={setFire} result={result} />
+
+                  <div className="z-40">
+                    <h1 className="m-4 text-3xl">House picked </h1>
+                    <div className="relative">
+                      <EmptyGameButton />
+                      <div className="[&>*]:animate-RPSPopUpDelayed">
+                        {computerPick === "rock" && (
+                          <div className="rounded-full w-fit m-auto relative">
+                            <WinnerGlow />
+                            <RockGameButton />
+                          </div>
+                        )}
+                        {computerPick === "paper" && (
+                          <div className="rounded-full w-fit m-auto relative">
+                            <PaperGameButton />
+                          </div>
+                        )}
+                        {computerPick === "scissors" && (
+                          <div className="rounded-full w-fit m-auto relative">
+                            <ScissorsGameButton />
+                          </div>
+                        )}
+                        {computerPick === "lizard" && (
+                          <div className="rounded-full w-fit m-auto relative">
+                            <LizardGameButton />
+                          </div>
+                        )}
+                        {computerPick === "spock" && (
+                          <div className="rounded-full w-fit m-auto relative">
+                            <WinnerGlow />
+                            <SpockGameButton />
+                          </div>
+                        )}
+                        {computerPick === "fire" && (
+                          <div className="rounded-full w-fit m-auto relative">
+                            <FireGameButton />
+                          </div>
+                        )}
+                        {computerPick === "water" && (
+                          <div className="rounded-full w-fit m-auto relative">
+                            <WinnerGlow />
+                            <WaterGameButton />
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+            {water && (
+              <>
+                <div className="flex h-full align-top z-40 text-white">
+                  <div className="[&>*]:animate-RPSPopUp">
+                    <h1 className="m-4 text-3xl">You picked</h1>
+
+                    {computerPick === "scissors" ||
+                    computerPick === "paper" ||
+                    computerPick === "lizard" ||
+                    computerPick === "water" ? (
+                      <WaterGameButton />
+                    ) : null}
+                    {computerPick === "rock" ||
+                    computerPick === "fire" ||
+                    computerPick === "spock" ? (
+                      <>
+                        <div className="rounded-full w-fit m-auto relative z-40">
+                          <div className="[&>*]:animate-RPSPopUpDelayed">
+                            <WinnerGlow />
+                          </div>
+                          <WaterGameButton />
+                        </div>
+                      </>
+                    ) : null}
+                  </div>
+
+                  <ResultandRestart setType={setWater} result={result} />
+
+                  <div className="z-40">
+                    <h1 className="m-4 text-3xl">House picked </h1>
+                    <div className="relative">
+                      <EmptyGameButton />
+                      <div className="[&>*]:animate-RPSPopUpDelayed">
+                        {computerPick === "rock" && (
+                          <div className="rounded-full w-fit m-auto relative">
+                            <RockGameButton />
+                          </div>
+                        )}
+                        {computerPick === "paper" && (
+                          <div className="rounded-full w-fit m-auto relative">
+                            <WinnerGlow />
+                            <PaperGameButton />
+                          </div>
+                        )}
+                        {computerPick === "scissors" && (
+                          <div className="rounded-full w-fit m-auto relative">
+                            <WinnerGlow />
+                            <ScissorsGameButton />
+                          </div>
+                        )}
+                        {computerPick === "lizard" && (
+                          <div className="rounded-full w-fit m-auto relative">
+                            <WinnerGlow />
+                            <LizardGameButton />
+                          </div>
+                        )}
+                        {computerPick === "spock" && (
+                          <div className="rounded-full w-fit m-auto relative">
+                            <SpockGameButton />
+                          </div>
+                        )}
+                        {computerPick === "fire" && (
+                          <div className="rounded-full w-fit m-auto relative">
+                            <FireGameButton />
+                          </div>
+                        )}
+                        {computerPick === "water" && (
+                          <div className="rounded-full w-fit m-auto relative">
+                            <WaterGameButton />
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -437,7 +680,7 @@ function RockPaperScissorLizardSpock() {
                   >
                     <img src={CLOSE} />
                   </button>
-                  <img className="m-auto" src={RULESBONUS} />
+                  <img className="h-96 m-auto" src={RULESFW} />
                 </div>
               </div>
             </>
@@ -448,7 +691,7 @@ function RockPaperScissorLizardSpock() {
   );
 }
 
-export default RockPaperScissorLizardSpock;
+export default RockPaperScissorsLizardSpockFireWater;
 
 {
   /* try to make this work: */
